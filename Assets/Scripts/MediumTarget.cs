@@ -10,4 +10,9 @@ public class MediumTarget : Target
         base.Movement();
         speed += .25f * Time.deltaTime; 
    }
+    public override void onHit()
+    {
+        GameManager.Instance.addScore(2);
+        startParticle(1, transform.position);
+    }
 }

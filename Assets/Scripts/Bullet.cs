@@ -45,20 +45,16 @@ public class Bullet : PoolableObject
     {
         
         if (other.gameObject.tag == "Target") {
-            Debug.Log(other.gameObject.name);
             switch (other.gameObject.name)
             {
-                case"Target(Clone)": 
-                    GameManager.Instance.addScore(1);
-                    break;
-                case "Target 2(Clone)":
-                    GameManager.Instance.addScore(2);
-                    break;
-                case "Target 3(Clone)":
-                    GameManager.Instance.addScore(3);
-                    break;
                 case "Start Target":
                     GameManager.Instance.StartGame();
+                    break;
+                case "Menu":
+                    GameManager.Instance.loadmenu();
+                    break;
+                default:var targetScript = other.gameObject.GetComponent<Target>();
+                    targetScript.onHit();
                     break;
             }
 

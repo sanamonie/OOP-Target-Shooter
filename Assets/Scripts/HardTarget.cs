@@ -9,4 +9,9 @@ public class HardTarget : Target
         base.Movement();
         speed += .5f * Time.deltaTime;
     }
+    public override void onHit()
+    {
+        GameManager.Instance.addScore(3);
+        startParticle(2, transform.position);
+    }
 }

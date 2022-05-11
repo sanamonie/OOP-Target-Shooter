@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public List<PoolableObject> Targets;
     private List<ObjectPooler> targetPools = new List<ObjectPooler>();
+    public ParticleSpawner pSpawner;
 
     int medium = 1;
     int hard = 1;
@@ -20,6 +21,8 @@ public class Spawner : MonoBehaviour
             ObjectPooler tempTargetPool = ObjectPooler.CreateInstance(tValue, 10);
             targetPools.Add(tempTargetPool);
         }
+
+
     }
 
     // Update is called once per frame
@@ -30,12 +33,15 @@ public class Spawner : MonoBehaviour
 
     public void spawnSingle(int targetIndex) {
         var setupTarget = targetPools[targetIndex].GetObject();
+        Target targetScript = setupTarget.GetComponent<Target>();
 
         Vector3 startPos = new Vector3(-8.5f, Random.Range(-4f, 5f), 19);
         setupTarget.transform.position = startPos;
 
         Vector3 tempDirrection = ((new Vector3(27.5f, Random.Range(-4f, 5), 19)) - startPos).normalized;
-        setupTarget.GetComponent<Target>().dirrection = tempDirrection;
+        targetScript.dirrection = tempDirrection;
+
+        targetScript.startParticle += pSpawner.spawnParticle;
 
     }
 

@@ -6,8 +6,11 @@ public class Target : PoolableObject
 {
 
     public Vector3 dirrection;
-   protected float speed = 5;
+    protected float speed = 5;
 
+
+    public delegate void pDelegate(int pIndex, Vector3 partPosition);
+    public pDelegate startParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,10 @@ public class Target : PoolableObject
         transform.Translate(dirrection*Time.deltaTime*speed);
     }
 
+    public virtual void onHit() {
+        GameManager.Instance.addScore(1);
+        startParticle(0,transform.position);
+    }
 
     //movement
     //collsion effect

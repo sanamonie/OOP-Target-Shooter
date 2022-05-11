@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public Text livesText;
     public Text scoreText;
+    public Text NameText;
 
     public GameObject StartTarget;
 
@@ -26,7 +28,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Instance != null) {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+
+        NameText.text = PersistantData.Instance.PlayerName;
     }
 
     // Update is called once per frame
@@ -36,7 +44,7 @@ public class GameManager : MonoBehaviour
             targetSpawner.SpawnWave(waveNumber);
             waveComplete = false;
         }
-        if (Lives <= 0) {
+        if (Lives <= 0&& gameRunning) {
             endGame();
         }
     }
@@ -66,5 +74,15 @@ public class GameManager : MonoBehaviour
         gameRunning = false;
         StartTarget.SetActive(true);
         targetSpawner.stopSpawn();
+        //SAVE SCORE
+        PersistantData.Instance.addHighScore(score);
+        PersistantData.Instance.saveHighScores();
+    }
+
+    public void loadmenu() {
+        if (gameRunning) {
+            endGame();
+        }
+        SceneManager.LoadScene(0);
     }
 }
