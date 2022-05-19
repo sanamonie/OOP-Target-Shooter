@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ShotgunTarget : Target
 {
+    // INHERITANCE
     public override void Movement()
     {
         base.Movement();
 
     }
+    // POLYMORPHISM
     public override void onHit()
     {
         if (!hit)

@@ -19,7 +19,8 @@ public class ParticleSpawner : MonoBehaviour
             
         }
     }
-
+    // ABSTRACTION
+    // method/expression to be added to delegate held in abstract Target class
     public void spawnParticle(int particleIndex, Vector3 spawnPosition) {
 
         var particleEffect = particlePools[particleIndex].GetObject();

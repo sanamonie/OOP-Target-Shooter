@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Gun : MonoBehaviour
+public abstract class Gun : MonoBehaviour
 {
 
     [SerializeField]
@@ -24,21 +24,9 @@ public class Gun : MonoBehaviour
     {
         createBulletPool();
     }
-    public virtual void fireBullet()
-    {
-        PoolableObject tempBullet = bulletPool.GetObject();
-        tempBullet.transform.position = bulletSpawn.position;
-        tempBullet.transform.rotation = bulletSpawn.rotation;
-        tempBullet.gameObject.GetComponent<Bullet>().shootBullet();
-    }
+    public abstract void fireBullet();
 
-    public virtual void createBulletPool()
-    {
-        if (bulletPool == null) {
-            bulletPool = ObjectPooler.CreateInstance(playerBullet, 40);
-        }
-       
-    }
+    public abstract void createBulletPool();
 
 
     

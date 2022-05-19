@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public abstract class Target : PoolableObject
 {
+
+
 
     public Vector3 dirrection;
     protected float speed = 5;
 
-
+    // ABSTRACTION
+    //delegate asigned int spawner class to a fucntion in the particle spawner class,
+    //in which it has access to
     public delegate void pDelegate(int pIndex, Vector3 partPosition);
     public pDelegate startParticle;
+
     protected Player playerScript;
 
     protected Coroutine onHitRoutine;

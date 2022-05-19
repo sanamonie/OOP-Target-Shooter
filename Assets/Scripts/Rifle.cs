@@ -11,8 +11,18 @@ public class Rifle : Gun
     }
 
     // Update is called once per frame
-    void Update()
+    public override void fireBullet()
     {
-        
+        PoolableObject tempBullet = bulletPool.GetObject();
+        tempBullet.transform.position = bulletSpawn.position;
+        tempBullet.transform.rotation = bulletSpawn.rotation;
+        tempBullet.gameObject.GetComponent<Bullet>().shootBullet();
+    }
+    public override void createBulletPool()
+    {
+        if (bulletPool == null)
+        {
+            bulletPool = ObjectPooler.CreateInstance(playerBullet, 40);
+        }
     }
 }

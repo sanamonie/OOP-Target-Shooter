@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
         gameRunning = false;
         StartTarget.SetActive(true);
         targetSpawner.stopSpawn();
+        waveNumber = 1;
         //SAVE SCORE
         PersistantData.Instance.addHighScore(score);
         PersistantData.Instance.saveHighScores();

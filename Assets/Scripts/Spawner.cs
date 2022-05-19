@@ -85,13 +85,16 @@ public class Spawner : MonoBehaviour
 
     }
 
+    // ABSTRACTION
+    //method used multiple time in order to return a index value that is not currently in use by another
+    //priority target
+    //also an example of recursion
     int RandomNotInList(List<int> usedIndexes,int waveNumber) {
         int tempInt = Random.Range(0, (waveNumber * 5) - 1);
         foreach (int value in usedIndexes)
         {
             if (tempInt == value)
             {
-               Debug.Log("recursion ran");
                tempInt = RandomNotInList(usedIndexes, waveNumber);
             }
         }

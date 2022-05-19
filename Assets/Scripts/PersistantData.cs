@@ -10,6 +10,7 @@ public class PersistantData : MonoBehaviour
     public int[] highScores;
     public string[] names;
 
+    // ENCAPSULATION
     private string playerName;
     public string PlayerName
     {
@@ -28,7 +29,6 @@ public class PersistantData : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (Instance != null)

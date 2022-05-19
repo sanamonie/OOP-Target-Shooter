@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MediumTarget : Target
 {
-
-   public override void Movement() 
+    // INHERITANCE
+    public override void Movement() 
    {
         base.Movement();
         speed += .25f * Time.deltaTime; 
    }
+    // POLYMORPHISM
     public override void onHit()
     {
         if (!hit)

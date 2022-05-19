@@ -26,7 +26,6 @@ public class ShotGun : Gun
     }
     public override void fireBullet()
     {
-        //base.fireBullet();
         List<PoolableObject> bullets = new List<PoolableObject>();
 
          distanceRange = new float[2] { .1f, .8f };
