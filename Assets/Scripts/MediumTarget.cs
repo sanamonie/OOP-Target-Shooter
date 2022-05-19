@@ -12,7 +12,14 @@ public class MediumTarget : Target
    }
     public override void onHit()
     {
-        GameManager.Instance.addScore(2);
-        startParticle(1, transform.position);
+        if (!hit)
+        {
+            
+            GameManager.Instance.addScore(2);
+            startParticle(1, transform.position);
+            gameObject.SetActive(false);
+            hit = true;
+        }
+        
     }
 }

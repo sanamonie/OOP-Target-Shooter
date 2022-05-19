@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Target : PoolableObject
+public abstract class Target : PoolableObject
 {
 
     public Vector3 dirrection;
@@ -11,11 +11,16 @@ public class Target : PoolableObject
 
     public delegate void pDelegate(int pIndex, Vector3 partPosition);
     public pDelegate startParticle;
+    protected Player playerScript;
+
+    protected Coroutine onHitRoutine;
+
+    public bool hit = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerScript = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -30,10 +35,12 @@ public class Target : PoolableObject
         transform.Translate(dirrection*Time.deltaTime*speed);
     }
 
-    public virtual void onHit()
+    public abstract void onHit();
+    
+
+    private void OnEnable()
     {
-        GameManager.Instance.addScore(1);
-        startParticle(0,transform.position);
+        hit = false;
     }
 
     //movement
@@ -46,5 +53,7 @@ public class Target : PoolableObject
             GameManager.Instance.changeLife(-1);
         }
     }
+
+    
 
 }

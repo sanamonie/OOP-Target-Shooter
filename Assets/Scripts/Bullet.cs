@@ -22,15 +22,27 @@ public class Bullet : PoolableObject
     private void OnEnable()
     {
       //  Invoke("AutoDisable", 5f);
-
-       
-        
-
     }
+
     public override void OnDisable()
     {
         base.OnDisable();
         RB.velocity = Vector3.zero;
+    }
+
+    void Update()
+    {
+        if (transform.position.x > 50 || transform.position.x < -50) {
+            gameObject.SetActive(false);
+        }
+        if (transform.position.y > 50 || transform.position.y < -50)
+        {
+            gameObject.SetActive(false);
+        }
+        if (transform.position.z > 50 || transform.position.z < -50)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 
@@ -49,16 +61,19 @@ public class Bullet : PoolableObject
             {
                 case "Start Target":
                     GameManager.Instance.StartGame();
+                    other.gameObject.SetActive(false);
                     break;
                 case "Menu":
                     GameManager.Instance.loadmenu();
+                    other.gameObject.SetActive(false);
                     break;
-                default:var targetScript = other.gameObject.GetComponent<Target>();
+                default:
+                    var targetScript = other.gameObject.GetComponent<Target>();
                     targetScript.onHit();
                     break;
             }
 
-            other.gameObject.SetActive(false);
+            
         }
         gameObject.SetActive(false);
         //if state to check if collider contains target abstract class 

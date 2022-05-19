@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
 
     int medium = 1;
     int hard = 1;
+    int shotGun = 1;
 
     Coroutine waveRoutine;
 
@@ -43,8 +44,9 @@ public class Spawner : MonoBehaviour
         Vector3 tempDirrection = ((new Vector3(27.5f, Random.Range(-4f, 5), 19)) - startPos).normalized;
         targetScript.dirrection = tempDirrection;
 
-        targetScript.startParticle += pSpawner.spawnParticle;
-
+        if (targetScript.startParticle == null) {
+            targetScript.startParticle += pSpawner.spawnParticle;
+        }
     }
 
     public void SpawnWave(int waveNumber) {
@@ -68,6 +70,14 @@ public class Spawner : MonoBehaviour
             usedIndexes.Add(tempIndex);
             currentWave[tempIndex] = 2;
         }
+        for (int i = 0; i < shotGun; i++)
+        {
+            int tempIndex = RandomNotInList(usedIndexes, waveNumber);
+            // Debug.Log(tempIndex + " is hard");
+            usedIndexes.Add(tempIndex);
+            currentWave[tempIndex] = 3;
+        }
+
         if (waveRoutine != null) {
             StopCoroutine(waveRoutine);
         }

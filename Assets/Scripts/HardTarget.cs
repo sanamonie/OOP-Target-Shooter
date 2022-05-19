@@ -11,7 +11,12 @@ public class HardTarget : Target
     }
     public override void onHit()
     {
-        GameManager.Instance.addScore(3);
-        startParticle(2, transform.position);
+        if (!hit) {
+            GameManager.Instance.addScore(3);
+            startParticle(2, transform.position);
+            gameObject.SetActive(false);
+            hit = true;
+        }
+        
     }
 }

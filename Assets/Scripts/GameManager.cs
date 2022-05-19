@@ -71,16 +71,26 @@ public class GameManager : MonoBehaviour
 
     private void endGame() 
     {
+        //disable remaining targets
+        var remainingTargets = GameObject.FindGameObjectsWithTag("Target");
+        foreach (GameObject tValue in remainingTargets) {
+            if (tValue.activeSelf) {
+                tValue.SetActive(false);
+            }
+        }
+        //reset game
         gameRunning = false;
         StartTarget.SetActive(true);
         targetSpawner.stopSpawn();
         //SAVE SCORE
         PersistantData.Instance.addHighScore(score);
         PersistantData.Instance.saveHighScores();
+        
     }
 
     public void loadmenu() {
-        if (gameRunning) {
+        if (gameRunning) 
+        {
             endGame();
         }
         SceneManager.LoadScene(0);

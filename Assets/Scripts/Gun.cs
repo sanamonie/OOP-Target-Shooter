@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Gun : MonoBehaviour
 {
 
     [SerializeField]
-    PoolableObject playerBullet;
-    ObjectPooler bulletPool;
+    protected PoolableObject playerBullet;
+    protected ObjectPooler bulletPool;
  
 
     [SerializeField]
-    Transform bulletSpawn;
-  
+    protected Transform bulletSpawn;
+
+    public delegate void ShotAction();
+    public ShotAction shotFired;
+
+    
+
 
     private void OnEnable()
     {
-
         createBulletPool();
     }
     public virtual void fireBullet()
@@ -29,7 +34,10 @@ public class Gun : MonoBehaviour
 
     public virtual void createBulletPool()
     {
-        bulletPool = ObjectPooler.CreateInstance(playerBullet, 40);
+        if (bulletPool == null) {
+            bulletPool = ObjectPooler.CreateInstance(playerBullet, 40);
+        }
+       
     }
 
 
