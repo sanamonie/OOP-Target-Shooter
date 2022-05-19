@@ -30,7 +30,8 @@ public class Target : PoolableObject
         transform.Translate(dirrection*Time.deltaTime*speed);
     }
 
-    public virtual void onHit() {
+    public virtual void onHit()
+    {
         GameManager.Instance.addScore(1);
         startParticle(0,transform.position);
     }
@@ -39,7 +40,8 @@ public class Target : PoolableObject
     //collsion effect
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "RBounds") {
+        if (collider.gameObject.tag == "RBounds")
+        {
             gameObject.SetActive(false);
             GameManager.Instance.changeLife(-1);
         }

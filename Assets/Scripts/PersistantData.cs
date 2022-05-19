@@ -17,7 +17,14 @@ public class PersistantData : MonoBehaviour
             return playerName;
         }
         set {
-            playerName = value;
+            if (value.Length == 0)
+            {
+                playerName = "charlie";
+            }
+            else {
+                playerName = value;
+            }
+            
         }
     }
 

@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void equipGun(int gunIndex) {
+    public void equipGun(int gunIndex){
         if (loadedGuns[gunIndex] != null) {
             //set active gun to disabled
             current_Gun.gameObject.SetActive(false);

@@ -13,6 +13,8 @@ public class Spawner : MonoBehaviour
 
     Coroutine waveRoutine;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +93,7 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < waveToSpawn.Length; i++) {
             spawnSingle(waveToSpawn[i]);
+
             yield return wait;
         }
         Debug.Log("wave end");
