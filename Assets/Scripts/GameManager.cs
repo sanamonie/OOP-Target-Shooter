@@ -74,7 +74,8 @@ public class GameManager : MonoBehaviour
         //disable remaining targets
         var remainingTargets = GameObject.FindGameObjectsWithTag("Target");
         foreach (GameObject tValue in remainingTargets) {
-            if (tValue.activeSelf) {
+            if (tValue.activeSelf&& tValue.name!="Menu") {
+                
                 tValue.SetActive(false);
             }
         }
